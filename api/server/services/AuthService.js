@@ -15,6 +15,7 @@ const { registerSchema } = require('~/strategies/validators');
 const isDomainAllowed = require('./isDomainAllowed');
 const Token = require('~/models/schema/tokenSchema');
 const Session = require('~/models/Session');
+const { Transaction } = require('~/models/Transaction');
 const { logger } = require('~/config');
 
 const domains = {
@@ -115,6 +116,27 @@ const verifyEmail = async (req) => {
 
   await emailVerificationData.deleteOne();
   logger.info(`[verifyEmail] Email verification successful. [Email: ${email}]`);
+
+  // Add free greeting tokens
+  let result;
+  try {
+    result = await Transaction.create({
+      user: emailVerificationData.userId,
+      tokenType: 'credits',
+      context: 'admin',
+      rawAmount: +5000,
+    });
+  } catch (error) {
+    logger.error(
+      `[verifyEmail] Error when giving greeting tokes. [Email: ${email}], Error: ${error}`,
+    );
+  }
+
+  // Check the result
+  if (!result?.balance) {
+    logger.error('[verifyEmail] Error: Something went wrong while updating the balance!');
+  }
+
   return { message: 'Email verification was successful' };
 };
 

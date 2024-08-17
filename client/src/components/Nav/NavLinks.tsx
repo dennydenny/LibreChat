@@ -26,9 +26,31 @@ function NavLinks() {
   const [showFiles, setShowFiles] = useRecoilState(store.showFiles);
 
   const avatarSrc = useAvatar(user);
+  const tariffLink = 'https://ohmygpt.ru/tariffs?' + user?.email;
 
   return (
     <>
+      <a
+        href={tariffLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group-ui-open:bg-gray-100 dark:group-ui-open:bg-gray-700 duration-350 mt-text-sm flex h-auto w-full items-center gap-2 rounded-lg p-2 text-sm transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+        id="headlessui-menu-button-:rq:"
+        type="button"
+        aria-haspopup="menu"
+        aria-expanded="false"
+        data-headlessui-state=""
+      >
+        <div className="-ml-0.9 -mt-0.8 h-8 w-8 flex-shrink-0">
+          <img
+            className="rounded-full"
+            src="data:image/svg+xml,%3Csvg%20fill%3D%22%233acf70%22%20width%3D%22800px%22%20height%3D%22800px%22%20viewBox%3D%220%200%2036%2036%22%20version%3D%221.1%22%20preserveAspectRatio%3D%22xMidYMid%20meet%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3Ctitle%3Eruble-solid%3C%2Ftitle%3E%0A%20%20%20%20%3Cpath%20d%3D%22M20.75%2C9.25H15v8.81h5.79a4.66%2C4.66%2C0%2C0%2C0%2C4.86-4.4A4.65%2C4.65%2C0%2C0%2C0%2C20.75%2C9.25Z%22%20class%3D%22clr-i-solid%20clr-i-solid-path-1%22%20transform%3D%22scale%280.9%29%20translate%282%2C%202%29%22%3E%3C%2Fpath%3E%0A%20%20%20%20%3Cpath%20d%3D%22M18%2C2A16%2C16%2C0%2C1%2C0%2C34%2C18%2C16%2C16%2C0%2C0%2C0%2C18%2C2Zm2.75%2C18.56H15V22h8.29a1%2C1%2C0%2C0%2C1%2C0%2C2H15v5a1.25%2C1.25%2C0%2C0%2C1-2.5%2C0V24H11.25a1%2C1%2C0%2C0%2C1%2C0-2h1.21V20.56H11.25a1.25%2C1.25%2C0%2C0%2C1%2C0-2.5h1.21V8a1.25%2C1.25%2C0%2C0%2C1%2C1.25-1.25h7a7.14%2C7.14%2C0%2C0%2C1%2C7.36%2C6.9A7.15%2C7.15%2C0%2C0%2C1%2C20.75%2C20.56Z%22%20class%3D%22clr-i-solid%20clr-i-solid-path-2%22%20transform%3D%22scale%280.9%29%20translate%282%2C%202%29%22%3E%3C%2Fpath%3E%0A%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2236%22%20height%3D%2236%22%20fill-opacity%3D%220%22%2F%3E%0A%3C%2Fsvg%3E"
+          />
+        </div>
+        <div className="mt-2 grow overflow-hidden text-ellipsis whitespace-nowrap text-left text-black dark:text-gray-100">
+          Тарифы
+        </div>
+      </a>
       <Menu as="div" className="group relative">
         {({ open }) => (
           <>
